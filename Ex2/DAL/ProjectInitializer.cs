@@ -81,28 +81,6 @@ namespace Ex2.DAL
             comments.ForEach(c => context.Comments.Add(c));
             context.SaveChanges();
 
-            var fans = new List<Fan>
-            {
-                new Fan {
-                    FanId=1,
-                    FirstName="First",
-                    LastName="LastFirst",
-                    UserGender=Gender.Male,
-                    BirthDate=new DateTime(1990, 5, 10),
-                    Vetek=2
-                },
-                new Fan {
-                    FanId=2,
-                    FirstName="Second",
-                    LastName="LastSecond",
-                    UserGender=Gender.Female,
-                    BirthDate=new DateTime(1990, 2, 3),
-                    Vetek=2
-                }
-            };
-
-            fans.ForEach(f => context.Fans.Add(f));
-            context.SaveChanges();
         }
     }
 }

@@ -15,5 +15,7 @@ namespace Ex2.Models
         public string MainHero { get; set; }
         public DateTime Date { get; set; }
         public string Content { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
