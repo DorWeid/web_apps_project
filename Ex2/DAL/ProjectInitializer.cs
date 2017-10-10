@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Ex2.DAL
 {
-    public class ProjectInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ProjectContext>
+    public class ProjectInitializer : System.Data.Entity.DropCreateDatabaseAlways<ProjectContext>
     {
         protected override void Seed(ProjectContext context)
         {
