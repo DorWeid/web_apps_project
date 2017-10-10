@@ -33,6 +33,12 @@ h3 {
     column-rule-color: lightblue;
 }
 
+.aboutMe {
+    padding: 10px;
+    background-color: red;
+    border-radius: 10px;
+}
+
 
 
 #transDemo2 div {
