@@ -14,22 +14,19 @@ namespace Ex2.DAL
             {
                 new Post {
                     PostID = 1,
-                    Title = "How it's being main widow/hanzo",
+                    Title = "I want to play with u",
                     AuthorName = "Matan",
-                    AuthorSiteURL="http://www.overwatch.com",
                     Date=new DateTime(1996, 4, 20),
-                    Content="Not very simple, you get alot of complaints in every game start. but yolo",
-                    ImageURL="https://i.ytimg.com/vi/P7KKbxN8dVY/maxresdefault.jpg",
-                    VideoURL="https://www.youtube.com/watch?v=s4DRQLkRGR4",
+                    Content="I like gaming",
+                    MainHero="Widowmaker",
                 },
                 new Post  {
                     PostID = 2,
                     Title = "The feeling being carried by the main widow",
                     AuthorName="Avner",
-                    AuthorSiteURL="http://losers.com",
                     Date=new DateTime(1995,1,1),
                     Content="I owe my rank to the main widow, he's such a pro and im such a noob player",
-                    ImageURL="https://i.ytimg.com/vi/xAXVTUkwJRc/maxresdefault.jpg",
+                    MainHero="Tracer",
                 }
             };
 

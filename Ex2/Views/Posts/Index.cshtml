@@ -18,19 +18,13 @@
             @Html.DisplayNameFor(model => model.AuthorName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AuthorSiteURL)
+            @Html.DisplayNameFor(model => model.MainHero)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VideoURL)
         </th>
         <th></th>
     </tr>
@@ -44,19 +38,13 @@
             @Html.DisplayFor(modelItem => item.AuthorName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AuthorSiteURL)
+            @Html.DisplayFor(modelItem => item.MainHero)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoURL)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
