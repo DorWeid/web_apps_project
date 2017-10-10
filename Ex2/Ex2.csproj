@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FansController.cs" />
+    <Compile Include="Controllers\HeroesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="DAL\ProjectInitializer.cs" />
@@ -157,6 +158,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Fan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -211,6 +213,11 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Heroes\Create.cshtml" />
+    <Content Include="Views\Heroes\Delete.cshtml" />
+    <Content Include="Views\Heroes\Details.cshtml" />
+    <Content Include="Views\Heroes\Edit.cshtml" />
+    <Content Include="Views\Heroes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

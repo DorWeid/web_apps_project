@@ -10,6 +10,30 @@ namespace Ex2.DAL
     {
         protected override void Seed(ProjectContext context)
         {
+
+
+            var heroes = new List<Hero>
+            {
+                new Hero
+                {
+                    HeroID=1,
+                    Name="Tracer",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=2,
+                    Name="Soldier",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=250,
+                },
+            };
+            heroes.ForEach(h => context.Heroes.Add(h));
+            context.SaveChanges();
+
             var posts = new List<Post>
             {
                 new Post {

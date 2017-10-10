@@ -19,5 +19,7 @@ namespace Ex2.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<Ex2.Models.Hero> Heroes { get; set; }
     }
 }

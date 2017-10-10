@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ex2.Models.Hero>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeroRole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttackStyle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeroRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttackStyle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HeroID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HeroID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HeroID })
+        </td>
+    </tr>
+}
+
+</table>
