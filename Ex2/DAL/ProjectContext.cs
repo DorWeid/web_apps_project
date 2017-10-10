@@ -11,8 +11,8 @@ namespace Ex2.DAL
     public class ProjectContext : DbContext
     {
         public ProjectContext() : base("ProjectContext") { }
-        public DbSet<Fan> Fans { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Hero> Heroes { get; set; }
         public DbSet<Comment> Comments {get; set;}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

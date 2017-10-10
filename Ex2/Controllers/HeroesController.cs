@@ -11,107 +11,107 @@ using Ex2.Models;
 
 namespace Ex2.Controllers
 {
-    public class FansController : Controller
+    public class HeroesController : Controller
     {
         private ProjectContext db = new ProjectContext();
 
-        // GET: Fans
+        // GET: Heroes
         public ActionResult Index()
         {
-            return View(db.Fans.ToList());
+            return View(db.Heroes.ToList());
         }
 
-        // GET: Fans/Details/5
+        // GET: Heroes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fan fan = db.Fans.Find(id);
-            if (fan == null)
+            Hero hero = db.Heroes.Find(id);
+            if (hero == null)
             {
                 return HttpNotFound();
             }
-            return View(fan);
+            return View(hero);
         }
 
-        // GET: Fans/Create
+        // GET: Heroes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Fans/Create
+        // POST: Heroes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FanId,FirstName,LastName,UserGender,BirthDate,Vetek")] Fan fan)
+        public ActionResult Create([Bind(Include = "HeroID,Name,HeroRole,HP,AttackStyle")] Hero hero)
         {
             if (ModelState.IsValid)
             {
-                db.Fans.Add(fan);
+                db.Heroes.Add(hero);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(fan);
+            return View(hero);
         }
 
-        // GET: Fans/Edit/5
+        // GET: Heroes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fan fan = db.Fans.Find(id);
-            if (fan == null)
+            Hero hero = db.Heroes.Find(id);
+            if (hero == null)
             {
                 return HttpNotFound();
             }
-            return View(fan);
+            return View(hero);
         }
 
-        // POST: Fans/Edit/5
+        // POST: Heroes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FanId,FirstName,LastName,UserGender,BirthDate,Vetek")] Fan fan)
+        public ActionResult Edit([Bind(Include = "HeroID,Name,HeroRole,HP,AttackStyle")] Hero hero)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fan).State = EntityState.Modified;
+                db.Entry(hero).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(fan);
+            return View(hero);
         }
 
-        // GET: Fans/Delete/5
+        // GET: Heroes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fan fan = db.Fans.Find(id);
-            if (fan == null)
+            Hero hero = db.Heroes.Find(id);
+            if (hero == null)
             {
                 return HttpNotFound();
             }
-            return View(fan);
+            return View(hero);
         }
 
-        // POST: Fans/Delete/5
+        // POST: Heroes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Fan fan = db.Fans.Find(id);
-            db.Fans.Remove(fan);
+            Hero hero = db.Heroes.Find(id);
+            db.Heroes.Remove(hero);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
