@@ -42,7 +42,7 @@ namespace Ex2.DAL
                     AuthorName = "Matan",
                     Date=new DateTime(1996, 4, 20),
                     Content="I like gaming",
-                    MainHero="Widowmaker",
+                    MainHero=heroes[0],
                 },
                 new Post  {
                     PostID = 2,
@@ -50,7 +50,7 @@ namespace Ex2.DAL
                     AuthorName="Avner",
                     Date=new DateTime(1995,1,1),
                     Content="I owe my rank to the main widow, he's such a pro and im such a noob player",
-                    MainHero="Tracer",
+                    MainHero=heroes[1],
                 }
             };
 

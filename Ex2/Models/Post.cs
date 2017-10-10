@@ -12,7 +12,7 @@ namespace Ex2.Models
         public int PostID { get; set; }
         public string Title { get; set; }
         public string AuthorName { get; set; }
-        public string MainHero { get; set; }
+        public Hero MainHero { get; set; }
         public DateTime Date { get; set; }
         public string Content { get; set; }
 
