@@ -5,6 +5,25 @@
 }
 
 <h2>Index</h2>
+<div class="mul-col-blue">
+    <canvas id="myCanvas" width="200" height="60" style="border:1px solid #000000;"></canvas>
+    <section id="videoContainer">
+        <!-- Introduction -->
+        <video width="400" controls>
+            <source src="~/media/videos/hanzo-potg.mp4" type="video/mp4">
+        </video>
+    </section>
+    <div class="aboutMe">hi about me</div>
+</div>
+
+<script>
+    const size = 500;
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.strokeText("Hanzo is OP", 10, 50);
+    
+</script>
 
 <p>
     @Html.ActionLink("Create New", "Create")
