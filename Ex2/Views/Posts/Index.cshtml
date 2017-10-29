@@ -25,6 +25,8 @@
     
 </script>
 
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -38,6 +40,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MainHero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainHeroId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -58,6 +63,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MainHero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainHeroId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)

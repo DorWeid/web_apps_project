@@ -47,7 +47,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHero,Date,Content")] Post post)
+        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Date,Content")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,MainHero,Date,Content")] Post post)
+        public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Date,Content")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -114,6 +114,21 @@ namespace Ex2.Controllers
             db.Posts.Remove(post);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Posts
+        public ActionResult ByHeroRole(string heroRole)
+        {
+            var results = db.Posts.AsQueryable();
+            Role role;
+            if (!string.IsNullOrEmpty(heroRole) && Enum.TryParse(heroRole, out role))
+            {
+                results.Where(p => p.MainHero.HeroRole == role);
+                //var a = from i in db.Posts
+                //        where i.MainHero.HeroRole == role
+                //        select i;
+            }
+            return View(results.ToList());
         }
 
         protected override void Dispose(bool disposing)
