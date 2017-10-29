@@ -16,9 +16,24 @@ namespace Ex2.Controllers
         private ProjectContext db = new ProjectContext();
 
         // GET: Heroes
-        public ActionResult Index()
+        public ActionResult Index(string searchName, string searchRole, string searchHp)
         {
-            return View(db.Heroes.ToList());
+            var results = db.Heroes.AsQueryable();
+            int hp;
+            Role role;
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                results = results.Where(s => s.Name == searchName);
+            }
+            if (!string.IsNullOrEmpty(searchRole) && Enum.TryParse(searchRole, out role))
+            {
+                results = results.Where(s => s.HeroRole == role);
+            }
+            if (!string.IsNullOrEmpty(searchHp) && int.TryParse(searchHp, out hp))
+            {
+                results = results.Where(s => s.HP == hp);
+            }
+            return View(results.ToList());
         }
 
         // GET: Heroes/Details/5

@@ -9,6 +9,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div class="col-md-3 col-lg-3">Find by name: @Html.TextBox("SearchName")</div>
+        <div class="col-md-3 col-lg-3">Find by Role:
+        @Html.DropDownList("SearchRole",
+           EnumHelper.GetSelectList(typeof(Ex2.Models.Role)),
+           "Select hero role")</div>        
+        <div class="col-md-3 col-lg-3">Find by HP:@Html.TextBox("SearchHp")</div>
+        <input class="col-md-2 col-lg-2" type="submit" value="Search" />
+    </div>
+}
+
 <table class="table">
     <tr>
         <th>
