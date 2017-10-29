@@ -117,18 +117,24 @@ namespace Ex2.Controllers
         }
 
         // GET: Posts
-        public ActionResult ByHeroRole(string heroRole)
+        public ActionResult Filter(string heroRole, string authorName, string heroName)
         {
             var results = db.Posts.AsQueryable();
             Role role;
+            if (!string.IsNullOrEmpty(heroName))
+            {
+                results = from post in db.Posts
+                          join hero in db.Heroes on post.MainHeroId equals hero.HeroID
+                          where hero.Name == heroName
+                          select post;
+            }
             if (!string.IsNullOrEmpty(heroRole) && Enum.TryParse(heroRole, out role))
             {
-                // Select by join with the heroes table
                 results = results.Where(p => p.MainHero.HeroRole == role);
-                //results = from post in db.Posts
-                //          join hero in db.Heroes on post.MainHeroId equals hero.HeroID
-                //          where hero.HeroRole == role
-                //          select post;
+            }
+            if (!string.IsNullOrEmpty(authorName))
+            {
+                results = results.Where(p => p.AuthorName == authorName);
             }
             return View("Index", results.ToList());
         }

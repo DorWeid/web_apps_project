@@ -31,15 +31,17 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm("ByHeroRole", "Posts"))
+@using (Html.BeginForm("Filter", "Posts"))
 {
     <div>
-        <div class="col-md-3 col-lg-3">
+        <div class="col-md-2 col-lg-2">
             Find by Role:
-            @Html.DropDownList("HeroRole",
+            @Html.DropDownList("heroRole",
            EnumHelper.GetSelectList(typeof(Ex2.Models.Role)),
            "Select Post by Hero-Role")
         </div>
+        <div class="col-md-2 col-lg-2">Find by Author name: @Html.TextBox("authorName")</div>
+        <div class="col-md-2 col-lg-2">Find by Hero name: @Html.TextBox("heroName")</div>
         <input class="col-md-2 col-lg-2" type="submit" value="Search" />
     </div>
 }
