@@ -201,7 +201,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Blogs\Index.cshtml" />
     <Content Include="Views\Heroes\Create.cshtml" />
     <Content Include="Views\Heroes\Delete.cshtml" />
     <Content Include="Views\Heroes\Details.cshtml" />
