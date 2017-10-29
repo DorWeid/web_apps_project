@@ -30,6 +30,27 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("ByHeroRole", "Posts"))
+{
+    <div>
+        <div class="col-md-3 col-lg-3">
+            Find by Role:
+            @Html.DropDownList("HeroRole",
+           EnumHelper.GetSelectList(typeof(Ex2.Models.Role)),
+           "Select Post by Hero-Role")
+        </div>
+        <input class="col-md-2 col-lg-2" type="submit" value="Search" />
+    </div>
+}
+
+@using (Html.BeginForm("GroupByHero", "Posts"))
+{
+    <div>
+        <input class="col-md-2 col-lg-2" type="submit" value="Count posts by hero" />
+    </div>
+}
+
 <table class="table">
     <tr>
         <th>

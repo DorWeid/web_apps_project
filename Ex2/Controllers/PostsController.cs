@@ -123,12 +123,25 @@ namespace Ex2.Controllers
             Role role;
             if (!string.IsNullOrEmpty(heroRole) && Enum.TryParse(heroRole, out role))
             {
-                results.Where(p => p.MainHero.HeroRole == role);
-                //var a = from i in db.Posts
-                //        where i.MainHero.HeroRole == role
-                //        select i;
+                // Select by join with the heroes table
+                results = results.Where(p => p.MainHero.HeroRole == role);
+                //results = from post in db.Posts
+                //          join hero in db.Heroes on post.MainHeroId equals hero.HeroID
+                //          where hero.HeroRole == role
+                //          select post;
             }
-            return View(results.ToList());
+            return View("Index", results.ToList());
+        }
+
+        public ActionResult GroupByHero()
+        {
+            // Group by and join
+            var totalPosts = from post in db.Posts
+                             group post by post.MainHeroId into g
+                             join hero in db.Heroes on g.Key equals hero.HeroID
+                             select new GroupByHeroModel() { HeroName = hero.Name, TotalPosts = g.Sum(p => 1)};
+
+            return View(totalPosts.ToList());
         }
 
         protected override void Dispose(bool disposing)

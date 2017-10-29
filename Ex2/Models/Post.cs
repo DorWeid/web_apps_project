@@ -19,4 +19,12 @@ namespace Ex2.Models
 
         public virtual ICollection<Comment> Comments { get; set; }
     }
+
+    public class GroupByHeroModel
+    {
+        public int HeroId { get; set; }
+        public string HeroName { get; set; }
+        public int TotalPosts { get; set; }
+
+    }
 }
