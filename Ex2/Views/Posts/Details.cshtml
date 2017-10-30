@@ -4,55 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="blog-post">
+    <p class="blog-post-title">@Html.DisplayFor(model => model.Title) </p>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <div class="blog-post-meta">@Html.DisplayFor(model => model.Date)</div>
+    <p>@Html.DisplayFor(model => model.Content)</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MainHero)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MainHero)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-    </dl>
+    <footer class="blockquote-footer">@Html.DisplayFor(model => model.AuthorName), Main <cite>@Html.DisplayFor(model => model.MainHero.Name)</cite></footer>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
+
+<div class="container">
+    <h3>Comments:</h3>
+    <br />
+    <ul class="comments-list col-md-8">@Html.DisplayFor(model => model.Comments)</ul>
+</div>
+<hr>
+<div class="container">
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |*@
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

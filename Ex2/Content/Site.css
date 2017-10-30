@@ -114,6 +114,7 @@ h6, .h6 {
   color: #efefef;
 }
 
+
 /*
  * Main column and sidebar layout
  */
@@ -174,12 +175,16 @@ h6, .h6 {
     text-align: left;
 }
 
-    .pager > li > a {
-        width: 140px;
-        padding: 10px 20px;
-        text-align: center;
-        border-radius: 30px;
-    }
+.pager > li > a {
+    width: 140px;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 30px;
+}
+
+
+
+
 
 
 /*
@@ -632,5 +637,4 @@ footer {
         footer ul li a {
             display: block;
         }
-
 
