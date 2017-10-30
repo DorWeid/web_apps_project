@@ -38,10 +38,43 @@ namespace Ex2.Controllers
         }
 
         // GET: Comments/Create
-        public ActionResult Create()
+        public ActionResult Add(int PostID)
         {
-            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
-            return View();
+            //ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
+            var newComment = new Comment();
+            newComment.PostID = PostID; // this will be sent from the ArticleDetails View, hold on :).
+            newComment.Title = "xzc";
+
+            return PartialView(newComment);
+        }
+
+        // POST: Comments/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
+            return View(comment);
+        }
+
+
+        // GET: Comments/Create
+        public ActionResult Create(int PostID)
+        {
+            //ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
+            var newComment = new Comment();
+            newComment.PostID = PostID; // this will be sent from the ArticleDetails View, hold on :).
+
+            return View(newComment);
         }
 
         // POST: Comments/Create

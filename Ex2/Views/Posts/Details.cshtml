@@ -20,6 +20,11 @@
     <ul class="comments-list col-md-8">@Html.DisplayFor(model => model.Comments)</ul>
 </div>
 <div class="add-comment">
+    @*@Html.Action("Create", "Comment", new { PostID = Model.PostID, area = "" });*@
+    @*@Html.RenderPartial("Create", new { PostID = Model.PostID, area = "" })*@
+    @Html.Action("Add", "Comments", new { PostID = Model.PostID });
+
+
 
 </div>
 <hr>
