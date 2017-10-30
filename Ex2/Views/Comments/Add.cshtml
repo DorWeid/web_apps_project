@@ -4,41 +4,40 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#myButton").click(function (e) {
+        $("#addComment").click(function (e) {
             e.preventDefault();
-            
+
+            var title = document.getElementById('title').value;
+            var authorName = document.getElementById('authorName').value;
+            var authorSiteURL = document.getElementById('authorSiteURL').value;
+            var content = document.getElementById('content').value;
+
+            if (title == '' || authorName == '' || authorSiteURL == '' || content == '') {
+                alert('fill all fields');
+                return;
+            }
+
             var token = $('[name=__RequestVerificationToken]').val();
             var commentData = {
-                PostID: 1,
-                Title: 'Z',
-                AuthorName: 'X',
-                AuthorSiteURL: 'C',
-                Content: 'K'
+                PostID: @Model.PostID,
+                Title: title,
+                AuthorName: authorName,
+                AuthorSiteURL: authorSiteURL,
+                Content: content
             };
-            console.log('token', token)
             commentData['__RequestVerificationToken'] = token;
-            console.log('comment data', commentData)
 
             $.ajax({
                 url: "/Comments/Create",
                 type: "POST",
                 data: commentData,
-                dataType: "json",
                 success: function (response) {
-                    if (response) {
-                        alert('worked!');
-                        console.log('workedddd');
-                        //window.location = '/Suppliers/index';
-                    }
-                    else {
-                        alert("someting go worng...");
-                        console.log('bad');
-                    }
+                    window.location.reload();
                 },
                 error: function (response) {
-                    console.log('error', response);
+                    alert('Error was occured, please try again later')
                 }
-                
+
             });
 
         });
@@ -48,14 +47,29 @@
 
     
     <div class="form-horizontal">
-        some input data...
     </div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <input type="submit" id="myButton" value="look at me" />
-    // rest
+    <div class="panel  panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <input id="authorName" class="col-md-4 col-lg-offset-1" type="text" placeholder="Your Name" />
+                <input id="authorSiteURL" class="col-md-4 col-lg-offset-1" type="text" placeholder="Your Site URL" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input id="title" class="col-md-4 col-lg-offset-1" type="text" placeholder="Title" />
+                <textarea id="content" class="col-md-4 col-lg-offset-1" type="text" placeholder="Content"></textarea>
+            </div>
+        </div>
+        
+        <div class="panel-footer">
+            <input class="btn btn-search-posts" type="submit" id="addComment" value="Post Comment" />
+        </div>
+        
+    </div>
 }
 
 

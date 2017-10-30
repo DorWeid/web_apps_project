@@ -59,21 +59,20 @@ namespace Ex2.Controllers
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return PartialView(comment);
+
             }
 
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
             return PartialView(comment);
+
         }
 
 
         // GET: Comments/Create
-        public ActionResult Create(int PostID)
+        public ActionResult Create()
         {
-            //ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
-            var newComment = new Comment();
-            newComment.PostID = PostID; // this will be sent from the ArticleDetails View, hold on :).
-
-            return View(newComment);
+            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
+            return View();
         }
 
         // POST: Comments/Create
