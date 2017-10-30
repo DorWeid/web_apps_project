@@ -43,7 +43,6 @@ namespace Ex2.Controllers
             //ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
             var newComment = new Comment();
             newComment.PostID = PostID; // this will be sent from the ArticleDetails View, hold on :).
-            newComment.Title = "xzc";
 
             return PartialView(newComment);
         }
