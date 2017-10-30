@@ -10,8 +10,6 @@ namespace Ex2.DAL
     {
         protected override void Seed(ProjectContext context)
         {
-
-
             var heroes = new List<Hero>
             {
                 new Hero
@@ -30,6 +28,22 @@ namespace Ex2.DAL
                     HeroRole=Role.Attack,
                     HP=250,
                 },
+                new Hero
+                {
+                    HeroID=3,
+                    Name="Zenyata",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Support,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=4,
+                    Name="Reinhart",
+                    AttackStyle=AttackStyle.Melee,
+                    HeroRole=Role.Tank,
+                    HP=500,
+                },
             };
             heroes.ForEach(h => context.Heroes.Add(h));
             context.SaveChanges();
@@ -42,6 +56,7 @@ namespace Ex2.DAL
                     AuthorName = "Matan",
                     Date=new DateTime(1996, 4, 20),
                     Content="I like gaming",
+                    MainHeroId=heroes[0].HeroID,
                     MainHero=heroes[0],
                 },
                 new Post  {
@@ -50,6 +65,7 @@ namespace Ex2.DAL
                     AuthorName="Avner",
                     Date=new DateTime(1995,1,1),
                     Content="I owe my rank to the main widow, he's such a pro and im such a noob player",
+                    MainHeroId=heroes[1].HeroID,
                     MainHero=heroes[1],
                 }
             };

@@ -47,7 +47,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHero,Date,Content")] Post post)
+        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Date,Content")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,MainHero,Date,Content")] Post post)
+        public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Date,Content")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -114,6 +114,40 @@ namespace Ex2.Controllers
             db.Posts.Remove(post);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Posts
+        public ActionResult Filter(string heroRole, string authorName, string heroName)
+        {
+            var results = db.Posts.AsQueryable();
+            Role role;
+            if (!string.IsNullOrEmpty(heroName))
+            {
+                results = from post in db.Posts
+                          join hero in db.Heroes on post.MainHeroId equals hero.HeroID
+                          where hero.Name == heroName
+                          select post;
+            }
+            if (!string.IsNullOrEmpty(heroRole) && Enum.TryParse(heroRole, out role))
+            {
+                results = results.Where(p => p.MainHero.HeroRole == role);
+            }
+            if (!string.IsNullOrEmpty(authorName))
+            {
+                results = results.Where(p => p.AuthorName == authorName);
+            }
+            return View("Index", results.ToList());
+        }
+
+        public ActionResult GroupByHero()
+        {
+            // Group by and join
+            var totalPosts = from post in db.Posts
+                             group post by post.MainHeroId into g
+                             join hero in db.Heroes on g.Key equals hero.HeroID
+                             select new GroupByHeroModel() { HeroName = hero.Name, TotalPosts = g.Sum(p => 1)};
+
+            return View(totalPosts.ToList());
         }
 
         protected override void Dispose(bool disposing)

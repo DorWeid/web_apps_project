@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Ex2.Models.GroupByHeroModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HeroName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPosts)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeroName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPosts)
+        </td>
+    </tr>
+}
+
+</table>

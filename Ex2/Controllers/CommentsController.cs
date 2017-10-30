@@ -11,122 +11,112 @@ using Ex2.Models;
 
 namespace Ex2.Controllers
 {
-    public class HeroesController : Controller
+    public class CommentsController : Controller
     {
         private ProjectContext db = new ProjectContext();
 
-        // GET: Heroes
-        public ActionResult Index(string searchName, string searchRole, string searchHp)
+        // GET: Comments
+        public ActionResult Index()
         {
-            var results = db.Heroes.AsQueryable();
-            int hp;
-            Role role;
-            if (!string.IsNullOrEmpty(searchName))
-            {
-                results = results.Where(s => s.Name == searchName);
-            }
-            if (!string.IsNullOrEmpty(searchRole) && Enum.TryParse(searchRole, out role))
-            {
-                results = results.Where(s => s.HeroRole == role);
-            }
-            if (!string.IsNullOrEmpty(searchHp) && int.TryParse(searchHp, out hp))
-            {
-                results = results.Where(s => s.HP == hp);
-            }
-            return View(results.ToList());
+            var comments = db.Comments.Include(c => c.Post);
+            return View(comments.ToList());
         }
 
-        // GET: Heroes/Details/5
+        // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hero hero = db.Heroes.Find(id);
-            if (hero == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(hero);
+            return View(comment);
         }
 
-        // GET: Heroes/Create
+        // GET: Comments/Create
         public ActionResult Create()
         {
+            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
             return View();
         }
 
-        // POST: Heroes/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HeroID,Name,HeroRole,HP,AttackStyle")] Hero hero)
+        public ActionResult Create([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Heroes.Add(hero);
+                db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(hero);
+            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
+            return View(comment);
         }
 
-        // GET: Heroes/Edit/5
+        // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hero hero = db.Heroes.Find(id);
-            if (hero == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(hero);
+            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
+            return View(comment);
         }
 
-        // POST: Heroes/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HeroID,Name,HeroRole,HP,AttackStyle")] Hero hero)
+        public ActionResult Edit([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hero).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(hero);
+            ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
+            return View(comment);
         }
 
-        // GET: Heroes/Delete/5
+        // GET: Comments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hero hero = db.Heroes.Find(id);
-            if (hero == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(hero);
+            return View(comment);
         }
 
-        // POST: Heroes/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hero hero = db.Heroes.Find(id);
-            db.Heroes.Remove(hero);
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
