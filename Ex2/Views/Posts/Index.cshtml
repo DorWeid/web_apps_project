@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Ex2.Models.Post>
 
-<div class="mul-col-blue container">
+<div class="mul-col-blue container text-center">
     <canvas  id="myCanvas" width="200" height="60" style="border:1px solid #000000;"></canvas>
     <section id="videoContainer">
         <!-- Introduction -->
@@ -20,57 +20,61 @@
 
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="container">
 
-@using (Html.BeginForm("Filter", "Posts"))
-{
-    <div>
-        <div class="col-md-2 col-lg-2">
-            Find by Role:
-            @Html.DropDownList("heroRole",
-           EnumHelper.GetSelectList(typeof(Ex2.Models.Role)),
-           "Select Post by Hero-Role")
+    @using (Html.BeginForm("Filter", "Posts", FormMethod.Post, new { @class = "form-inline" }))
+    {
+        <h4>Filter posts by</h4>
+        <div class="form-group">
+            @Html.DropDownList("heroRole", EnumHelper.GetSelectList(typeof(Ex2.Models.Role)), "Role", new { @class = "form-control" })
         </div>
-        <div class="col-md-2 col-lg-2">Find by Author name: @Html.TextBox("authorName")</div>
-        <div class="col-md-2 col-lg-2">Find by Hero name: @Html.TextBox("heroName")</div>
-        <input class="col-md-2 col-lg-2" type="submit" value="Search" />
-    </div>
-}
 
-@using (Html.BeginForm("GroupByHero", "Posts"))
+
+        <div class="form-group">
+            @Html.TextBox("authorName", "", new { @class = "form-control", placeholder  = "Author Name"})
+        </div>
+
+        <div class="form-group">
+            @Html.TextBox("heroName", "", new { @class = "form-control", placeholder = "Hero Name" })
+        </div>
+
+        <input class="btn btn-search-posts" type="submit" value="Search" />
+    }
+
+   
+
+    <hr />
+    <div class="container row">
+        <div class="list-inline">
+            @using (Html.BeginForm("GroupByHero", "Posts"))
+            {
+                <input class="btn btn-lg btn-stats" type="submit" value="Posts Stats" />
+                <p class="btn btn-lg btn-add-blog" href="#" role="button">@Html.ActionLink("Add Blog", "Create", null, new { @style = "color: #f99e1a;" })</p>
+            }
+           
+        </div>
+    </div>
+
+
+</div>
+
+
+<hr />
+
+
+@foreach (var item in Model)
 {
-    <div>
-        <input class="col-md-2 col-lg-2" type="submit" value="Count posts by hero" />
+    <div class="blog-post">
+        <p class="blog-post-title">@Html.ActionLink(item.Title, "Details", new { id = item.PostID }, new { @style = "text-decoration:none; color: black;" }) </p>
+       
+        <div class="blog-post-meta">@Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Date))</div>
+        <p>@Html.DisplayFor(modelItem => item.Content)</p>
+
+
+        <footer class="blockquote-footer">@Html.DisplayFor(modelItem => item.AuthorName), Main <cite>@Html.DisplayFor(modelItem => item.MainHero.Name)</cite></footer>
     </div>
-}
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MainHero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MainHeroId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
+    @*<tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -88,13 +92,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
             @Html.ActionLink("Details", "Details", new { id=item.PostID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
-        </td>
-    </tr>
+        </td>*@
+    @*</tr>*@
 }
-
-</table>
