@@ -58,11 +58,11 @@ namespace Ex2.Controllers
             {
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return PartialView(comment);
             }
 
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
-            return View(comment);
+            return PartialView(comment);
         }
 
 
