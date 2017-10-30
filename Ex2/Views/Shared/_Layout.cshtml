@@ -16,105 +16,87 @@
         <!-- <audio src="./audio/mymusic.mp3" type="audio/mpeg" autoplay /> -->
 
     </div>
-
     <header>
-        <h1 id="haTitle">Ha-Blog Shel Shauli</h1>
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="nav">
+                    <!-- Navigation -->
+                    <ul>
+                        <li class="nav-link">@Html.ActionLink("Posts", "Index", "Posts")</li>
+                        <li class="nav-link">@Html.ActionLink("Heroes", "Index", "Heroes")</li>
+                        <li class="nav-link">@Html.ActionLink("Comments", "Index", "Comments")</li>
+                        <li class="nav-link"><a href="#">About</a></li>
+                        <li class="nav-link"><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+        <div class="blog-header">
+            <div class="container">
+                <h1 class="blog-title"> Shauli's overwatch blog</h1>
+                <p class="lead blog-description">Looking for players to play with, in this ebola game</p>
+            </div>
+        </div>
     </header>
-    <nav>
-        <!-- Navigation -->
-        <ul>
-            <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-            <li>@Html.ActionLink("Heroes", "Index", "Heroes")</li>
-            <li>@Html.ActionLink("Comments", "Index", "Comments")</li>
-            <li>About</li>
-            <li><a href="#">Contact</a></li>
-            <li>
-                <div id="transDemo2">
-                    <div class="hover">
-                        <img src=http://www.ashlylorenzana.com/wp-content/uploads/2013/12/12065637851779660844SRD_RSS_Logo.svg_.hi_.png width="30" height="30">
-                    </div>
+
+    <main role="main" class="container">
+        <div class="container">
+            <div class="col-sm-10 blog-main">
+                @RenderBody()
+            </div>
+            <aside class="col-sm-2 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+                    <h3>Heroes</h3>
+                    <section>
+                        <header>
+                            <h4>Supports</h4>
+                        </header>
+                        <ul>
+                            <li>Mercy</li>
+                            <li>Zenyatta</li>
+                            <li>Lucio</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <header>
+                            <h4>Tanks</h4>
+                        </header>
+                        <ul>
+                            <li>Reinhardt</li>
+                            <li>Winston</li>
+                            <li>Zarya</li>
+                            <li>Orisa</li>
+                            <li>Roadhog</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <header>
+                            <h4>Defenders</h4>
+                        </header>
+                        <ul>
+                            <li>Hanzo</li>
+                            <li>Junkrat</li>
+                            <li>Mei</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <header>
+                            <h4>Attacks</h4>
+                        </header>
+                        <ul>
+                            <li>Soldier</li>
+                            <li>Mccree</li>
+                            <li>Tracer</li>
+                        </ul>
+                    </section>
                 </div>
-            </li>
-        </ul>
-    </nav>
-    <div id="content">
-        <div id="mainContent">
-            @RenderBody()
+            </aside>
         </div>
-        <aside>
-            <section>
-                <header>
-                    <h3>Supports</h3>
-                </header>
-                <ul>
-                    <li>Mercy</li>
-                    <li>Zenyatta</li>
-                    <li>Lucio</li>
-                </ul>
-            </section>
-            <section>
-                <header>
-                    <h3>Tanks</h3>
-                </header>
-                <ul>
-                    <li>Reinhardt</li>
-                    <li>Winston</li>
-                    <li>Zarya</li>
-                    <li>Orisa</li>
-                    <li>Roadhog</li>
-                </ul>
-            </section>
-            <section>
-                <header>
-                    <h3>Defenders</h3>
-                </header>
-                <ul>
-                    <li>Hanzo</li>
-                    <li>Junkrat</li>
-                    <li>Mei</li>
-                </ul>
-            </section>
-            <section>
-                <header>
-                    <h3>Attacks</h3>
-                </header>
-                <ul>
-                    <li>Soldier</li>
-                    <li>Mccree</li>
-                    <li>Tracer</li>
-                </ul>
-            </section>
-        </aside>
-    </div>
-    <footer>
-        <!-- Footer -->
-        <div>
-            <section id="about">
-                <header>
-                    <h3>About</h3>
-                </header>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut la</p>
-            </section>
-            <section id="blogroll">
-                <header>
-                    <h3>Blogroll</h3>
-                </header>
-                <ul>
-                    <li><a href="#">NETTUTS+</a></li>
-                    <li><a href="#">FreelanceSwitch</a></li>
-                </ul>
-            </section>
-            <section id="popular">
-                <header>
-                    <h3>Popular</h3>
-                </header>
-                <ul>
-                    <li><a href="#">This is the title of a blog post</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="#">Consectetur adipisicing elit, sed do eiusmod</a></li>
-                </ul>
-            </section>
-        </div>
+    </main>
+
+    <footer class="blog-footer">
+        <p>This blog was built by pro <a href="https://playoverwatch.com/en-us/">Overwatch</a> players.</p>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
