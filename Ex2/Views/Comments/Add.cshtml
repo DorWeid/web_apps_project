@@ -1,64 +1,64 @@
 ﻿@model Ex2.Models.Comment
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+@Scripts.Render("~/bundles/jquery")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#myButton").click(function (e) {
+            e.preventDefault();
+            
+            var token = $('[name=__RequestVerificationToken]').val();
+            var commentData = {
+                PostID: 1,
+                Title: 'Z',
+                AuthorName: 'X',
+                AuthorSiteURL: 'C',
+                Content: 'K'
+            };
+            console.log('token', token)
+            commentData['__RequestVerificationToken'] = token;
+            console.log('comment data', commentData)
+
+            $.ajax({
+                url: "/Comments/Create",
+                type: "POST",
+                data: commentData,
+                dataType: "json",
+                success: function (response) {
+                    if (response) {
+                        alert('worked!');
+                        console.log('workedddd');
+                        //window.location = '/Suppliers/index';
+                    }
+                    else {
+                        alert("someting go worng...");
+                        console.log('bad');
+                    }
+                },
+                error: function (response) {
+                    console.log('error', response);
+                }
+                
+            });
+
+        });
+    });
+</script>
+
+
     
     <div class="form-horizontal">
-        <h4>Comment</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.PostID, "PostID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AuthorName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AuthorName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AuthorName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AuthorSiteURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AuthorSiteURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AuthorSiteURL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        some input data...
     </div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" id="myButton" value="look at me" />
+    // rest
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
