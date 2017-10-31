@@ -7,18 +7,246 @@
     src: url('../media/fonts/Roboto-Medium.ttf') format('truetype');
 }
 
-h3 {
+
+
+
+/*
+ * Globals
+ */
+
+body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #555;
+    /*background: linear-gradient(white, rgba(30, 161, 239, 0.63))*/
+}
+
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 0;
+    font-weight: normal;
+    color: #333;
     font-family: 'Hanzo Font';
 }
+
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+    background-color: black;
+    -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+
+.list-aside > li {
+    color: #43484c;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: 'Hanzo Font';
+}
+/* Nav links */
+.blog-nav-item {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    font-weight: 500;
+    color: #cdddeb;
+}
+
+    .blog-nav-item:hover,
+    .blog-nav-item:focus {
+        color: #fff;
+        text-decoration: none;
+    }
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+    color: #fff;
+}
+
+.blog-nav .active:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    vertical-align: middle;
+    content: " ";
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid;
+    border-left: 5px solid transparent;
+}
+
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.blog-title {
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-size: 60px;
+    font-weight: normal;
+    color: #f99e1a;
+}
+
+.blog-description {
+    font-size: 20px;
+    color: #999;
+}
+
+.nav-link {
+  position: relative;
+  /* padding: 1rem; */
+  font-weight: 500;
+  color: #efefef;
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+.blog-main {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.blockquote-footer {
+    display: block;
+    font-size: 80%;
+    // back to default font-size color: $blockquote-small-color;
+    &::before
+
+    {
+        content: "\2014 \00A0";
+        // em dash, nbsp
+    }
+
+}
+
+.btn-stats {
+    background-color: #f99e1a;
+    color: white;
+}
+.btn-add-blog {
+    box-shadow: 0 0 3px 0px #777;
+    color: #f99e1a;
+    background-color: white;
+}
+
+.btn-search-posts {
+    background-color: #f99e1a;
+    color: white;
+}
+/* Sidebar modules for boxing content */
+.sidebar-module {
+    padding: 15px;
+    margin: 0 -15px 15px;
+}
+
+.sidebar-module-inset {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+    .sidebar-module-inset p:last-child,
+    .sidebar-module-inset ul:last-child,
+    .sidebar-module-inset ol:last-child {
+        margin-bottom: 0;
+    }
+
+
+/* Pagination */
+.pager {
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.pager > li > a {
+    width: 140px;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 30px;
+}
+
+
+
+
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+    margin-bottom: 60px;
+}
+
+.blog-post-title {
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
+.blog-post-meta {
+    margin-bottom: 20px;
+    color: #999;
+}
+
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+    padding: 40px 0;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+}
+
+    .blog-footer p:last-child {
+        margin-bottom: 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #haTitle {
     text-shadow: 3px 3px #DDDDDD;
 }
 
 .mul-col-blue {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
     -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
     -moz-column-gap: 40px; /* Firefox */
     column-gap: 40px;
@@ -31,6 +259,10 @@ h3 {
     -webkit-column-rule-color: lightblue; /* Chrome, Safari, Opera */
     -moz-column-rule-color: lightblue; /* Firefox */
     column-rule-color: lightblue;
+
+    justify-content: center;
+    align-items: center;
+
 }
 
 .aboutMe {
@@ -51,59 +283,19 @@ h3 {
     transition: all 2s ease-in-out;
 }
 
-    #transDemo2 div:hover, #transDemo2 div.hover_effect {
-        -webkit-transform: rotate(720deg) scale(2,2);
-        -moz-transform: rotate(720deg) scale(2,2);
-        -ms-transform: rotate(720deg) scale(2,2);
-        transform: rotate(720deg) scale(2,2);
-    }
-
-/* Makeshift CSS Reset */
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Saira', sans-serif;
+#transDemo2 div:hover, #transDemo2 div.hover_effect {
+    -webkit-transform: rotate(720deg) scale(2,2);
+    -moz-transform: rotate(720deg) scale(2,2);
+    -ms-transform: rotate(720deg) scale(2,2);
+    transform: rotate(720deg) scale(2,2);
 }
-
-/* Tell the browser to render HTML 5 elements as block */
-header, footer, section, aside, nav, article {
-    display: block;
-}
-
-body {
-    margin: 0 auto;
-    padding: 22px 0;
-    width: 940px;
-    font: 13px/22px Helvetica, Arial, sans-serif;
-    background: #F0F0F0;
-}
-
-h1, h2 {
-    font-size: 28px;
-    line-height: 44px;
-    padding: 22px 0;
-}
-
-p {
-    padding-bottom: 22px;
-}
-
 
 
 /*------------------------------
 =NAVIGATION
 ------------------------------*/
 
-nav {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    /*background: url("images/nav_background.png");*/
-    background: #424242; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#424242, #191919) background: -o-linear-gradient(#424242, #191919); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#424242, #191919); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#424242, #191919); /* Standard syntax */
-}
+
 
     nav ul {
         margin: 0 auto;
@@ -119,11 +311,11 @@ nav {
                 display: block;
                 margin-right: 20px;
                 width: 140px;
-                font-size: 14px;
+                font-size: 18px;
                 line-height: 44px;
                 text-align: center;
                 text-decoration: none;
-                color: #777;
+                color: white;
             }
 
                 nav ul li a:hover {
@@ -138,15 +330,15 @@ nav {
                 margin-left: 22px;
                 padding-left: 33px;
                 text-align: left;
-                /*background: url("images/rss.png") left center no-repeat;*/
-                /*height:30px;
-                width:30px;*/
+                /*background: url("images/rss.png") left center no-repeat;
+                height:30px;
+                width:30px;
                 text-align: center;
                 -webkit-transition: all 2s ease-in-out;
                 -moz-transition: all 2s ease-in-out;
                 -ms-transition: all 2s ease-in-out;
                 transition: all 2s ease-in-out;
-            }
+            }*/
 
 #transDemo2 div {
     /*height:30px;
@@ -221,9 +413,9 @@ nav {
 =CONTENT AREA AND SIDEBAR LAYOUT
 ------------------------------*/
 
-#content {
+/*#content {
     display: table;
-}
+}*/
 
 #mainContent {
     display: table-cell;
@@ -445,3 +637,4 @@ footer {
         footer ul li a {
             display: block;
         }
+
