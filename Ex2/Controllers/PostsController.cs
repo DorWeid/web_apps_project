@@ -39,6 +39,9 @@ namespace Ex2.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
+            var allHeroes = db.Heroes;
+            //this.ViewData["heroesSelectable"] = new SelectList(allHeroes, "HeroID", "Name");
+            this.ViewData["heroesSelectable"] = (IEnumerable<Ex2.Models.Hero>)allHeroes;
             return View();
         }
 
