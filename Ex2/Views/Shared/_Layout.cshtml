@@ -26,8 +26,16 @@
                         <li class="nav-link">@Html.ActionLink("Posts", "Index", "Posts")</li>
                         <li class="nav-link">@Html.ActionLink("Heroes", "Index", "Heroes")</li>
                         <li class="nav-link">@Html.ActionLink("Comments", "Index", "Comments")</li>
-                        <li class="nav-link">@Html.ActionLink("Admin", "Login", "Admin")</li>
-                        <li class="nav-link"><a href="#">Contact</a></li>
+                        @{
+                            if (Session["isLoggedIn"] == null)
+                            {
+                                <li class="nav-link">@Html.ActionLink("Admin", "Login", "Admin")</li>
+                            }
+                            else  {
+                                <li class="nav-link">@Html.ActionLink("Logout", "Logout", "Admin")</li>
+                            }
+                        }
+                        
                         
                     </ul>
                 </nav>

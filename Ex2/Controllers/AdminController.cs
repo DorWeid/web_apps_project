@@ -22,13 +22,19 @@ namespace Ex2.Controllers
             var isAdmin = username == "matan" && password == "1234";
             if (isAdmin)
             {
-                System.Web.HttpContext.Current.Session["isAdmin"] = true;
+                System.Web.HttpContext.Current.Session["isLoggedIn"] = true;
                 return Json(new { succeeded = true });
             }
 
             //ViewBag.ErrMsg = "User name or password are incorrect.";
             //return View();
             return Json(new { error= "User name or password are incorrect." });
-            }
+        }
+
+        public ActionResult Logout()
+        {
+            System.Web.HttpContext.Current.Session["isLoggedIn"] = null;
+            return View("~/Views/Admin/Login.cshtml");
+        }
     }
 }
