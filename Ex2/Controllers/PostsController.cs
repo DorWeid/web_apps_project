@@ -47,7 +47,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Content")] Post post)
+        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,HeroID,Content")] Post post)
         {
             post.Date = DateTime.Now;
             if (ModelState.IsValid)
@@ -80,7 +80,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Date,Content")] Post post)
+        public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,HeroID,MainHero,Date,Content")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -125,7 +125,7 @@ namespace Ex2.Controllers
             if (!string.IsNullOrEmpty(heroName))
             {
                 results = from post in db.Posts
-                          join hero in db.Heroes on post.MainHeroId equals hero.HeroID
+                          join hero in db.Heroes on post.HeroID equals hero.HeroID
                           where hero.Name == heroName
                           select post;
             }
@@ -144,7 +144,7 @@ namespace Ex2.Controllers
         {
             // Group by and join
             var totalPosts = from post in db.Posts
-                             group post by post.MainHeroId into g
+                             group post by post.HeroID into g
                              join hero in db.Heroes on g.Key equals hero.HeroID
                              select new GroupByHeroModel() { HeroName = hero.Name, TotalPosts = g.Sum(p => 1)};
 
