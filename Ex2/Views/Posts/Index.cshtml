@@ -71,6 +71,15 @@
         <p>@Html.DisplayFor(modelItem => item.Content)</p>
 
         <footer class="blockquote-footer">@Html.DisplayFor(modelItem => item.AuthorName), Main <cite>@Html.DisplayFor(modelItem => item.MainHero.Name)</cite></footer>
+
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+
+
+        </div>
+
     </div>
 
     @*<tr>

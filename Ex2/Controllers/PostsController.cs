@@ -47,8 +47,9 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Date,Content")] Post post)
+        public ActionResult Create([Bind(Include = "PostID,Title,AuthorName,MainHeroId,MainHero,Content")] Post post)
         {
+            post.Date = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Posts.Add(post);
