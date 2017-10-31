@@ -31,18 +31,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MainHero, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.MainHero, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MainHero, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MainHero, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <label>Main Hero:</label>
+                @*@Html.EditorFor(model => model.HeroID, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("HeroID",
+                    new SelectList((IEnumerable<Ex2.Models.Hero>)ViewData["heroesSelectable"], "HeroID", "Name"), new { @class = "btn btn-default" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+
+                @Html.ValidationMessageFor(model => model.MainHero, "", new { @class = "text-danger" })
             </div>
         </div>
 
