@@ -27,7 +27,7 @@
                         <li class="nav-link">@Html.ActionLink("Heroes", "Index", "Heroes")</li>
                         <li class="nav-link">@Html.ActionLink("Comments", "Index", "Comments")</li>
                         @{
-                            if (Session["isLoggedIn"] == null)
+                            if (!Request.IsAuthenticated)
                             {
                                 <li class="nav-link">@Html.ActionLink("Admin", "Login", "Admin")</li>
                             }
