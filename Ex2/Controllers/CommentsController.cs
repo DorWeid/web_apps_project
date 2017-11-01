@@ -69,6 +69,7 @@ namespace Ex2.Controllers
 
 
         // GET: Comments/Create
+        [Authorize(Users = "Admin")]
         public ActionResult Create()
         {
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
@@ -80,6 +81,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "Admin")]
         public ActionResult Create([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
         {
             if (ModelState.IsValid)
@@ -94,6 +96,7 @@ namespace Ex2.Controllers
         }
 
         // GET: Comments/Edit/5
+        [Authorize(Users = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,6 +117,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "Admin")]
         public ActionResult Edit([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
         {
             if (ModelState.IsValid)
@@ -127,6 +131,7 @@ namespace Ex2.Controllers
         }
 
         // GET: Comments/Delete/5
+        [Authorize(Users = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -144,6 +149,7 @@ namespace Ex2.Controllers
         // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Comment comment = db.Comments.Find(id);

@@ -71,7 +71,7 @@
         <p>@Html.DisplayFor(modelItem => item.Content)</p>
 
         <footer class="blockquote-footer">@Html.DisplayFor(modelItem => item.AuthorName), Main <cite>@Html.DisplayFor(modelItem => item.MainHero.Name)</cite></footer>
-    @{ if (Session["isLoggedIn"] != null)
+    @{ if (Request.IsAuthenticated)
     {
         <div>
             @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
