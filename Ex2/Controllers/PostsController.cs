@@ -76,6 +76,9 @@ namespace Ex2.Controllers
             {
                 return HttpNotFound();
             }
+
+            var allHeroes = db.Heroes;
+            this.ViewData["heroesSelectable"] = (IEnumerable<Ex2.Models.Hero>)allHeroes;
             return View(post);
         }
 
