@@ -12,7 +12,7 @@ namespace Ex2.Controllers
     [Route("api/[controller]/[action]")]
     public class TwitterController : Controller
     {
-        // POST api/TwitterAPI/Tweet
+        // POST api/Twitter/Tweet
         [HttpPost]
         public async Task<ActionResult> Tweet(TweetToBe tweet)
         {
