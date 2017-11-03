@@ -95,6 +95,19 @@ namespace Ex2.DAL
             comments.ForEach(c => context.Comments.Add(c));
             context.SaveChanges();
 
+            var maps = new List<Map>
+            {
+                new Map
+                {
+                    MapID=1,
+                    Name="Temple of Anubis",
+                    Address="Ein gedi petah tiqva 12",
+
+                },
+            };
+            maps.ForEach(m => context.Maps.Add(m));
+            context.SaveChanges();
+
         }
     }
 }
