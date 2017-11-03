@@ -8,23 +8,35 @@ using Ex2.Models;
 using Tweetinvi;
 
 namespace Ex2.Controllers
-{
-    [Route("api/[controller]/[action]")]
+{    
     public class TwitterController : Controller
     {
-        // POST api/Twitter/Tweet
-        [HttpPost]
-        public async Task<ActionResult> Tweet(TweetToBe tweet)
+		// GET: Twitter/Tweet
+		public ActionResult TweetPage()
+		{
+			return View("~/Views/Admin/Tweet.cshtml");
+		}
+
+		// POST Twitter/Tweet
+		[HttpPost]
+        public ActionResult TweetUpdate(string text)
         {
-            var tweetToBe = await TweetAsync.PublishTweet(tweet.Text);
+			try
+			{
+				var tweetToBe = Tweet.PublishTweet(text);
 
-            if (tweetToBe.IsTweetPublished)
-            {
-                return Json(new Dictionary<string, object> { { "url", tweetToBe.Url } });
-            }
+				if (tweetToBe.IsTweetPublished)
+				{
+					return Json(new Dictionary<string, object> { { "url", tweetToBe.Url } });
+				}
+				
 
-            return new HttpStatusCodeResult(500);
-
-        }
+			}
+			catch (Exception ex)
+			{
+				return new HttpStatusCodeResult(500, ExceptionHandler.GetLastException().TwitterDescription);
+			}
+			return new HttpStatusCodeResult(500);
+		}
     }
 }
