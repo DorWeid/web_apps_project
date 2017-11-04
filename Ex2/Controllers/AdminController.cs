@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Ex2.Controllers
 {
@@ -22,7 +23,15 @@ namespace Ex2.Controllers
             var isAdmin = username == "matan" && password == "1234";
             if (isAdmin)
             {
-                System.Web.HttpContext.Current.Session["isLoggedIn"] = true;
+
+                //System.Web.HttpContext.Current.Session["isLoggedIn"] = true;
+
+
+                FormsAuthentication.SetAuthCookie("Admin", false);
+                //FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+
+
+
                 return Json(new { succeeded = true });
             }
 
@@ -33,7 +42,8 @@ namespace Ex2.Controllers
 
         public ActionResult Logout()
         {
-            System.Web.HttpContext.Current.Session["isLoggedIn"] = null;
+            //System.Web.HttpContext.Current.Session["isLoggedIn"] = null;
+            FormsAuthentication.SignOut();
             return View("~/Views/Admin/Login.cshtml");
         }
     }

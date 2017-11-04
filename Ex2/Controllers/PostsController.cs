@@ -64,6 +64,7 @@ namespace Ex2.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Users = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,6 +76,9 @@ namespace Ex2.Controllers
             {
                 return HttpNotFound();
             }
+
+            var allHeroes = db.Heroes;
+            this.ViewData["heroesSelectable"] = (IEnumerable<Ex2.Models.Hero>)allHeroes;
             return View(post);
         }
 
@@ -83,6 +87,7 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "Admin")]
         public ActionResult Edit([Bind(Include = "PostID,Title,AuthorName,HeroID,MainHero,Date,Content")] Post post)
         {
             if (ModelState.IsValid)
@@ -95,6 +100,7 @@ namespace Ex2.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Users = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +118,7 @@ namespace Ex2.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Post post = db.Posts.Find(id);
