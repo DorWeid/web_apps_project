@@ -101,7 +101,63 @@ namespace Ex2.DAL
                 {
                     MapID=1,
                     Name="Temple of Anubis",
-                    Address="Ein gedi petah tiqva 12",
+                    Address="Giza Plateau",
+
+                },
+                new Map
+                {
+                    MapID=2,
+                    Name="Hanamura",
+                    Address="Tokyo, Japan",
+
+                },
+                new Map
+                {
+                    MapID=3,
+                    Name="Volskaya Industries",
+                    Address="St. Petersburg, Russia",
+
+                },
+                new Map
+                {
+                    MapID=4,
+                    Name="Dorado",
+                    Address="Veracruz, Mexico",
+
+                },
+                new Map
+                {
+                    MapID=5,
+                    Name="Junkertown",
+                    Address="Northern Territory, Australia",
+
+                },
+                new Map
+                {
+                    MapID=6,
+                    Name="Lijiang Tower",
+                    Address="China",
+
+                },
+                new Map
+                {
+                    MapID=7,
+                    Name="Eichenwalde",
+                    Address="Stuttgart, Germany",
+
+                },
+                new Map
+                {
+                    MapID=8,
+                    Name="Hollywood",
+                    Address="Los Angeles, California",
+
+                },
+                new Map
+                {
+                    MapID=9,
+                    Name="King's row",
+                    Address="London, England",
 
                 },
             };

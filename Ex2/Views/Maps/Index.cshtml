@@ -13,11 +13,11 @@
     }
 </style>
 
-<!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
+<!-- css popup "info window" when a marker is clicked on the map -->
 <style>
     .infoDiv {
-        height: 200px;
-        width: 300px;
+        height: 100px;
+        width: 200px;
         -webkit-user-select: none;
         background-color: white;
     }
@@ -45,12 +45,12 @@
     function Initialize() {
 
         // Set Israel as the center of the map
-        var Israel = new google.maps.LatLng(31.046051, 34.851612);
+        var Spain = new google.maps.LatLng(41.390205, 2.154007);
 
         // These are options that set initial zoom level, where the map is centered globally to start, and the type of map to show
         var mapOptions = {
-            zoom: 8,
-            center: Israel,
+            zoom: 2,
+            center: Spain,
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
 
@@ -60,28 +60,28 @@
         // Create the geocoder object
         var geocoder = new google.maps.Geocoder();
 
-        // Get the branches data from the controller, in JSON format
+        // Get the overwatch maps data from the controller, in JSON format
         var mapsData = @Html.Raw(Json.Encode(Model));
 
         // Using the JQuery "each" selector to iterate through the Maps list from the controller and drop marker pins
             $.each(mapsData, function (i, item) {
 
-            // Initiate a request to the Google geocoding service to get the location of the branch by the address
+            // Using Google geocoding service to get the location of the overwatch map by the address
             geocoder.geocode({ 'address': item.Address }, function (results, status) {
 
-                // Set marker in the relevant location on the map
+                // Set marker in the overwatch map location on the map
                 var marker = new google.maps.Marker({
                 'position': results[0].geometry.location,
                 'map': map,
-                'title': item.name
+                'title': item.Name
                             });
 
                 // Make the marker-pin blue
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-                // Put in some information about each JSON object - branch's name. address and phone number
+                // Put in some information about each Map by its JSON object - Map's name and address
                     var infowindow = new google.maps.InfoWindow({
-                    content: "<div class='infoDiv'><h2><u><center>" + item.name + "</h2></u></center>" + "<h3><center>" + item.address + "</h3></center>" + "</div></div>"
+                    content: "<div class='infoDiv'><h3><u><center>" + item.Name + "</h3></u></center>" + "<h4><center>" + item.Address + "</h4></center>" + "</div></div>"
                 });
 
                 // Finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked
