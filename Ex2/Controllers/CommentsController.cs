@@ -59,12 +59,15 @@ namespace Ex2.Controllers
             {
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return PartialView(comment);
+                return Json(new { succeeded = true, commentData = comment });
+                //return Json(comment, JsonRequestBehavior.AllowGet);
+                //return PartialView(comment);
 
             }
 
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
-            return PartialView(comment);
+            return Json(new { succeeded = false });
+            //return PartialView(comment);
 
         }
 
