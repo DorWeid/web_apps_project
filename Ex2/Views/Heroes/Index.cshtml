@@ -70,10 +70,15 @@
 }
 
 <h2>Index</h2>
+@{
+    if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 @using (Html.BeginForm())
 {
@@ -105,7 +110,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -119,11 +125,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.AttackStyle)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HeroID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HeroID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HeroID })
-        </td>
+    @{
+        if (Request.IsAuthenticated)
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.HeroID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.HeroID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.HeroID })
+            </td>
+        }
+    }
     </tr>
 }
 
