@@ -28,11 +28,31 @@
             commentData['__RequestVerificationToken'] = token;
 
             $.ajax({
-                url: "/Comments/Create",
+                url: "/Comments/Add",
                 type: "POST",
                 data: commentData,
                 success: function (response) {
-                    window.location.reload();
+                    console.log(response);
+                    if (response.succeeded) {
+                        var commentData = response.commentData;
+                        var tblRow = `
+                            <li class="blog-comment">
+                                <p class="meta"><strong>` + commentData.AuthorName + `</strong></p>
+                                <p>
+                                    <strong>` + commentData.Title + `</strong>
+                                    <br />` + commentData.Content + `
+                                </p>
+                            </li>`
+                        $("#comment-list").append(tblRow);
+
+                        // clear the fields
+                        document.getElementById('title').value = ''
+                        document.getElementById('authorName').value = ''
+                        document.getElementById('authorSiteURL').value = ''
+                        document.getElementById('content').value = ''
+
+                    }
+                    //window.location.reload();
                 },
                 error: function (response) {
                     alert('Error was occured, please try again later')

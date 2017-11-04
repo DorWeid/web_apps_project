@@ -23,6 +23,7 @@ namespace Ex2.Controllers
         }
 
         // GET: Comments/Details/5
+        [Authorize(Users = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -58,18 +59,20 @@ namespace Ex2.Controllers
             {
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return PartialView(comment);
+                return Json(new { succeeded = true, commentData = comment });
+                //return Json(comment, JsonRequestBehavior.AllowGet);
+                //return PartialView(comment);
 
             }
 
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title", comment.PostID);
-            return PartialView(comment);
+            return Json(new { succeeded = false });
+            //return PartialView(comment);
 
         }
 
 
         // GET: Comments/Create
-        [Authorize(Users = "Admin")]
         public ActionResult Create()
         {
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
@@ -81,7 +84,6 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Users = "Admin")]
         public ActionResult Create([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
         {
             if (ModelState.IsValid)

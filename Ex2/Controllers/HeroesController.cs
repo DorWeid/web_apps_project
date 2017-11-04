@@ -46,6 +46,7 @@ namespace Ex2.Controllers
         }
 
         // GET: Heroes/Details/5
+        [Authorize(Users = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
