@@ -15,14 +15,46 @@ namespace Ex2.DAL
                 new Hero
                 {
                     HeroID=1,
-                    Name="Tracer",
+                    Name="Doomfist",
+                    AttackStyle=AttackStyle.Melee,
+                    HeroRole=Role.Attack,
+                    HP=250,
+                },
+                new Hero
+                {
+                    HeroID=2,
+                    Name="Genji",
                     AttackStyle=AttackStyle.Range,
                     HeroRole=Role.Attack,
                     HP=200,
                 },
                 new Hero
                 {
-                    HeroID=2,
+                    HeroID=3,
+                    Name="McCree",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=4,
+                    Name="Pharah",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=5,
+                    Name="Reaper",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=250,
+                },
+                new Hero
+                {
+                    HeroID=6,
                     Name="Soldier",
                     AttackStyle=AttackStyle.Range,
                     HeroRole=Role.Attack,
@@ -30,19 +62,155 @@ namespace Ex2.DAL
                 },
                 new Hero
                 {
-                    HeroID=3,
-                    Name="Zenyata",
+                    HeroID=7,
+                    Name="Sombra",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=8,
+                    Name="Tracer",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Attack,
+                    HP=150,
+                },
+                new Hero
+                {
+                    HeroID=9,
+                    Name="Bastion",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Defender,
+                    HP=300,
+                },
+                new Hero
+                {
+                    HeroID=10,
+                    Name="Hanzo",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Defender,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=11,
+                    Name="Junkrat",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Defender,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=12,
+                    Name="Mei",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Defender,
+                    HP=250,
+                },
+                new Hero
+                {
+                    HeroID=13,
+                    Name="Torbjorn",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Defender,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=14,
+                    Name="Widowmaker",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Defender,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=15,
+                    Name="D.Va",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Tank,
+                    HP=600,
+                },
+                new Hero
+                {
+                    HeroID=16,
+                    Name="Orisa",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Tank,
+                    HP=400,
+                },
+                new Hero
+                {
+                    HeroID=17,
+                    Name="Reinhart",
+                    AttackStyle=AttackStyle.Melee,
+                    HeroRole=Role.Tank,
+                    HP=500,
+                },
+                new Hero
+                {
+                    HeroID=18,
+                    Name="Roadhog",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Tank,
+                    HP=600,
+                },
+                new Hero
+                {
+                    HeroID=19,
+                    Name="Winston",
+                    AttackStyle=AttackStyle.Melee,
+                    HeroRole=Role.Tank,
+                    HP=500,
+                },
+                new Hero
+                {
+                    HeroID=20,
+                    Name="Zarya",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Tank,
+                    HP=400,
+                },
+                new Hero
+                {
+                    HeroID=21,
+                    Name="Ana",
                     AttackStyle=AttackStyle.Range,
                     HeroRole=Role.Support,
                     HP=200,
                 },
                 new Hero
                 {
-                    HeroID=4,
-                    Name="Reinhart",
+                    HeroID=22,
+                    Name="Lucio",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Support,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=23,
+                    Name="Mercy",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Support,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=24,
+                    Name="Symmetra",
                     AttackStyle=AttackStyle.Melee,
-                    HeroRole=Role.Tank,
-                    HP=500,
+                    HeroRole=Role.Support,
+                    HP=200,
+                },
+                new Hero
+                {
+                    HeroID=25,
+                    Name="Zenyata",
+                    AttackStyle=AttackStyle.Range,
+                    HeroRole=Role.Support,
+                    HP=200,
                 },
             };
             heroes.ForEach(h => context.Heroes.Add(h));
@@ -93,6 +261,75 @@ namespace Ex2.DAL
                 },
             };
             comments.ForEach(c => context.Comments.Add(c));
+            context.SaveChanges();
+
+            var maps = new List<Map>
+            {
+                new Map
+                {
+                    MapID=1,
+                    Name="Temple of Anubis",
+                    Address="Giza Plateau",
+
+                },
+                new Map
+                {
+                    MapID=2,
+                    Name="Hanamura",
+                    Address="Tokyo, Japan",
+
+                },
+                new Map
+                {
+                    MapID=3,
+                    Name="Volskaya Industries",
+                    Address="St. Petersburg, Russia",
+
+                },
+                new Map
+                {
+                    MapID=4,
+                    Name="Dorado",
+                    Address="Veracruz, Mexico",
+
+                },
+                new Map
+                {
+                    MapID=5,
+                    Name="Junkertown",
+                    Address="Northern Territory, Australia",
+
+                },
+                new Map
+                {
+                    MapID=6,
+                    Name="Lijiang Tower",
+                    Address="China",
+
+                },
+                new Map
+                {
+                    MapID=7,
+                    Name="Eichenwalde",
+                    Address="Stuttgart, Germany",
+
+                },
+                new Map
+                {
+                    MapID=8,
+                    Name="Hollywood",
+                    Address="Los Angeles, California",
+
+                },
+                new Map
+                {
+                    MapID=9,
+                    Name="King's row",
+                    Address="London, England",
+
+                },
+            };
+            maps.ForEach(m => context.Maps.Add(m));
             context.SaveChanges();
 
         }

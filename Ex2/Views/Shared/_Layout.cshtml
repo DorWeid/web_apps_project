@@ -26,12 +26,15 @@
                         <li class="nav-link">@Html.ActionLink("Posts", "Index", "Posts")</li>
                         <li class="nav-link">@Html.ActionLink("Heroes", "Index", "Heroes")</li>
                         <li class="nav-link">@Html.ActionLink("Comments", "Index", "Comments")</li>
+                        <li class="nav-link">@Html.ActionLink("Maps", "Index", "Maps")</li>
                         @{
                             if (!Request.IsAuthenticated)
                             {
                                 <li class="nav-link">@Html.ActionLink("Admin", "Login", "Admin")</li>
-                            }
-                            else  {
+							}
+							else
+							{
+								<li class="nav-link">@Html.ActionLink("Tweet", "TweetPage", "Twitter")</li>
                                 <li class="nav-link">@Html.ActionLink("Logout", "Logout", "Admin")</li>
                             }
                         }
