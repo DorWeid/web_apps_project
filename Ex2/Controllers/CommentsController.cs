@@ -70,7 +70,6 @@ namespace Ex2.Controllers
 
 
         // GET: Comments/Create
-        [Authorize(Users = "Admin")]
         public ActionResult Create()
         {
             ViewBag.PostID = new SelectList(db.Posts, "PostID", "Title");
@@ -82,7 +81,6 @@ namespace Ex2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Users = "Admin")]
         public ActionResult Create([Bind(Include = "CommentID,PostID,Title,AuthorName,AuthorSiteURL,Content")] Comment comment)
         {
             if (ModelState.IsValid)
