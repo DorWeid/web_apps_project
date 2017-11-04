@@ -31,8 +31,10 @@
                             if (!Request.IsAuthenticated)
                             {
                                 <li class="nav-link">@Html.ActionLink("Admin", "Login", "Admin")</li>
-                            }
-                            else  {
+							}
+							else
+							{
+								<li class="nav-link">@Html.ActionLink("Tweet", "TweetPage", "Twitter")</li>
                                 <li class="nav-link">@Html.ActionLink("Logout", "Logout", "Admin")</li>
                             }
                         }
