@@ -36,6 +36,15 @@ namespace Ex2.Controllers
             return View(results.ToList());
         }
 
+        // GET: Heroes
+        [HttpGet]
+        public ActionResult IndexData(string searchName, string searchRole, string searchHp)
+        {
+            var heroes = db.Heroes.ToList();
+
+            return Json(heroes, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Heroes/Details/5
         public ActionResult Details(int? id)
         {

@@ -161,6 +161,18 @@ namespace Ex2.Controllers
             return View(totalPosts.ToList());
         }
 
+        [HttpGet]
+        public ActionResult GroupByHeroData()
+        {
+            // Group by and join
+            var totalPosts = from post in db.Posts
+                             group post by post.HeroID into g
+                             join hero in db.Heroes on g.Key equals hero.HeroID
+                             select new GroupByHeroModel() { HeroName = hero.Name, TotalPosts = g.Sum(p => 1) };
+
+            return Json(totalPosts.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
