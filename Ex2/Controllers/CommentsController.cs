@@ -16,7 +16,6 @@ namespace Ex2.Controllers
         private ProjectContext db = new ProjectContext();
 
         // GET: Comments
-        [Authorize(Users = "Admin")]
         public ActionResult Index()
         {
             var comments = db.Comments.Include(c => c.Post);
