@@ -64,30 +64,31 @@
         var mapsData = @Html.Raw(Json.Encode(Model));
 
         // Using the JQuery "each" selector to iterate through the Maps list from the controller and drop marker pins
-            $.each(mapsData, function (i, item) {
+            $.each(mapsData, function (i, item) {      
+               
+                // Using Google geocoding service to get the location of the overwatch map by the address
+                geocoder.geocode({ 'address': item.Address }, function (results, status) {
+                    // Set marker in the overwatch map location on the map
+                    var marker = new google.maps.Marker({
+                        'position': results[0].geometry.location,
+                        'map': map,
+                        'title': item.Name
+                    });
 
-            // Using Google geocoding service to get the location of the overwatch map by the address
-            geocoder.geocode({ 'address': item.Address }, function (results, status) {
+                    // Make the marker-pin blue
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')                    
 
-                // Set marker in the overwatch map location on the map
-                var marker = new google.maps.Marker({
-                'position': results[0].geometry.location,
-                'map': map,
-                'title': item.Name
-                            });
-
-                // Make the marker-pin blue
-                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
-
-                // Put in some information about each Map by its JSON object - Map's name and address
-                    var infowindow = new google.maps.InfoWindow({
-                    content: "<div class='infoDiv'><h3><u><center>" + item.Name + "</h3></u></center>" + "<h4><center>" + item.Address + "</h4></center>" + "</div></div>"
-                });
-
-                // Finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
+                    // Finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked
+                    google.maps.event.addListener(marker, 'click', function () {
+                        $.ajax('http://api.openweathermap.org/data/2.5/weather?appid=bbd15f92702070e7d2bb4e5d229cd46d&units=metric&lat=' + marker.position.lat() + '&lon=' + marker.position.lng())
+                            .done(function (res) {
+                                // Put in some information about each Map by its JSON object - Map's name and address
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: "<div class='infoDiv'><h3><u><center>" + item.Name + "</h3></u></center>" + "<h4><center>" + item.Address + "</h4></center><h5><center><b>Temperature: </b>" + res.main.temp +"C°</center></h5></div></div>"
+                                });
+                                infowindow.open(map, marker);
+                            })                        
+                    });
             });
         })
     }
