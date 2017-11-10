@@ -233,6 +233,30 @@ namespace Ex2.DAL
                     Date=new DateTime(1995,1,1),
                     Content="I owe my rank to the main widow, he's such a pro and im such a noob player",
                     HeroID=heroes[1].HeroID,
+                },
+                new Post  {
+                    PostID = 3,
+                    Title = "IDK What im talking about",
+                    AuthorName="Adir",
+                    Date=new DateTime(1999,2,3),
+                    Content="I cant play this game becaue Genji is op",
+                    HeroID=heroes[1].HeroID,
+                },
+                new Post  {
+                    PostID = 4,
+                    Title = "Who is Doomfist",
+                    AuthorName="No one",
+                    Date=new DateTime(1999,2,3),
+                    Content="never heard of him",
+                    HeroID=heroes[0].HeroID,
+                },
+                new Post  {
+                    PostID = 3,
+                    Title = "Tracer should be more fun",
+                    AuthorName="Dor",
+                    Date=new DateTime(1999,2,3),
+                    Content="but she's not",
+                    HeroID=heroes[8].HeroID,
                 }
             };
 

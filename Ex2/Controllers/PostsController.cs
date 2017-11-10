@@ -173,6 +173,34 @@ namespace Ex2.Controllers
             return Json(totalPosts.ToList(), JsonRequestBehavior.AllowGet);
         }
 
+        // Get Posts/WantMore
+        [HttpPost]
+        public ActionResult WantMore(string heroId , string currentPostId)
+        {
+            try
+            {
+                int pId = Int32.Parse(currentPostId);
+                int hId = Int32.Parse(heroId);
+                var alikePost = (from post in db.Posts
+                                 where post.PostID != pId && post.HeroID == hId
+                                 select post.PostID).SingleOrDefault();
+                if (alikePost != 0)
+                {
+                    return Json(new Dictionary<string, object> { { "url", "/Posts/Details/" + alikePost } });
+                }
+                else
+                {
+                    return Json(new Dictionary<string, object> { { "error", "didnt found any" } });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new Dictionary<string, object> { { "error", ex.Message } });
+            }
+            
+            
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,4 +1,34 @@
 ﻿@model Ex2.Models.Post
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(document).ready(function () {        
+        var token = $('[name=__RequestVerificationToken]').val();
+		var bodyData = {
+			heroId: "@Model.MainHero.HeroID",
+            currentPostId: "@Model.PostID"
+        };        
+        bodyData['__RequestVerificationToken'] = token;
+        $.ajax({
+            url: "/Posts/WantMore",
+            type: "Post",
+            data: bodyData,
+            success: function (response) {
+                var el = document.getElementById("morePosts");
+
+                if (!response.error) {
+                    el.href = response.url;
+                }
+                else {
+                    el.parentElement.removeChild(el);
+                }
+            },
+            error: function (res) {
+                console.log('err', res)
+            }
+        });
+
+    });
+</script>
 
 @{
     ViewBag.Title = "Details";
@@ -10,7 +40,7 @@
     <div class="blog-post-meta">@Html.DisplayFor(model => model.Date)</div>
     <p>@Html.DisplayFor(model => model.Content)</p>
 
-
+	<a id="morePosts">Want more posts of @Html.DisplayFor(model => model.MainHero.Name)? click here</a>
     <footer class="blockquote-footer">@Html.DisplayFor(model => model.AuthorName), Main <cite>@Html.DisplayFor(model => model.MainHero.Name)</cite></footer>
 </div>
 
