@@ -19,8 +19,15 @@
 </script>
 
 
-
 <div class="container">
+    @{
+        Dictionary<string, int> counterDictionary = (Dictionary<string, int>)Session["counterDictionary"];
+        if (counterDictionary != null)
+        {
+            string favHeroName = counterDictionary.FirstOrDefault(x => x.Value == counterDictionary.Values.Max()).Key;
+            <div class="alert alert-info">Like @Html.Raw(favHeroName)? @Html.ActionLink("click", "Filter", new { heroName = favHeroName }) for more</div>
+        }
+    }
 
     @using (Html.BeginForm("Filter", "Posts", FormMethod.Post, new { @class = "form-inline" }))
     {
