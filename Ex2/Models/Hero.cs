@@ -20,8 +20,10 @@ namespace Ex2.Models
     {
         [Key]
         public int HeroID { get; set; }
+        [Required]
         public string Name { get; set; }
         public Role HeroRole { get; set; }
+        [Required]
         public int HP { get; set; }
         public AttackStyle AttackStyle { get; set; }
     }

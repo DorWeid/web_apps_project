@@ -11,7 +11,9 @@ namespace Ex2.Models
         [Key]
         public int CommentID { get; set; }
         public int PostID { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string AuthorName { get; set; }
         public string AuthorSiteURL { get; set; }
         public string Content { get; set; }

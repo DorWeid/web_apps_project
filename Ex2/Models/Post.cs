@@ -10,8 +10,11 @@ namespace Ex2.Models
     {
         [Key]
         public int PostID { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string AuthorName { get; set; }
+        [Required]
         public int HeroID { get; set; }
         [DisplayFormat(DataFormatString = "{0:DD/MM/YYYY}", ApplyFormatInEditMode = false)]
         public DateTime Date { get; set; }

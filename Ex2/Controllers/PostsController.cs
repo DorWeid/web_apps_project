@@ -40,7 +40,6 @@ namespace Ex2.Controllers
         public ActionResult Create()
         {
             var allHeroes = db.Heroes;
-            //this.ViewData["heroesSelectable"] = new SelectList(allHeroes, "HeroID", "Name");
             this.ViewData["heroesSelectable"] = (IEnumerable<Ex2.Models.Hero>)allHeroes;
             return View();
         }
@@ -60,6 +59,8 @@ namespace Ex2.Controllers
                 return RedirectToAction("Index");
             }
 
+            var allHeroes = db.Heroes;
+            this.ViewData["heroesSelectable"] = (IEnumerable<Ex2.Models.Hero>)allHeroes;
             return View(post);
         }
 
@@ -96,6 +97,8 @@ namespace Ex2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var allHeroes = db.Heroes;
+            this.ViewData["heroesSelectable"] = (IEnumerable<Ex2.Models.Hero>)allHeroes;
             return View(post);
         }
 
