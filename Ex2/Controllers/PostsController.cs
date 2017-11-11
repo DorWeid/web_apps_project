@@ -26,7 +26,7 @@ namespace Ex2.Controllers
         {
 
             // Incerment the counter for this hero
-            int heroId = id.Value;
+            int heroId = db.Posts.First(p => p.PostID == id).HeroID; // id.Value;
             string heroName = db.Heroes.First(h => h.HeroID == heroId).Name;
             Dictionary<string, int> counterDictionary = (Dictionary<string, int>)Session["counterDictionary"];
             if (counterDictionary is null)
