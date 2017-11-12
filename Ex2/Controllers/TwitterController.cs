@@ -11,14 +11,16 @@ namespace Ex2.Controllers
 {    
     public class TwitterController : Controller
     {
-		// GET: Twitter/Tweet
-		public ActionResult TweetPage()
+        // GET: Twitter/Tweet
+        [Authorize(Users = "Admin")]
+        public ActionResult TweetPage()
 		{
 			return View("~/Views/Admin/Tweet.cshtml");
 		}
 
 		// POST Twitter/Tweet
 		[HttpPost]
+        [Authorize(Users = "Admin")]
         public ActionResult TweetUpdate(string text)
         {
 			try

@@ -24,6 +24,26 @@ namespace Ex2.Controllers
         // GET: Posts/Details/5
         public ActionResult Details(int? id)
         {
+
+            // Incerment the counter for this hero
+            int heroId = db.Posts.First(p => p.PostID == id).HeroID; // id.Value;
+            string heroName = db.Heroes.First(h => h.HeroID == heroId).Name;
+            Dictionary<string, int> counterDictionary = (Dictionary<string, int>)Session["counterDictionary"];
+            if (counterDictionary is null)
+            {
+                counterDictionary = new Dictionary<string, int>();
+            }
+            if (counterDictionary.ContainsKey(heroName))
+            {
+                counterDictionary[heroName]++;
+            } 
+            else
+            {
+                counterDictionary.Add(heroName, 1);
+            }
+            Session["counterDictionary"] = counterDictionary;
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
