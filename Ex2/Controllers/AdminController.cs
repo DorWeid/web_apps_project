@@ -20,7 +20,7 @@ namespace Ex2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password)
         {
-            var isAdmin = username == "matan" && password == "1234";
+            var isAdmin = username == "admin" && password == "1234";
             if (isAdmin)
             {
 
